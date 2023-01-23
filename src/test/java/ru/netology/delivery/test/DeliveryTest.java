@@ -47,7 +47,7 @@ public class DeliveryTest {
         $("[data-test-id=phone] input").setValue(validUser.getPhone());
         $("[data-test-id=agreement] span").click();
         $x("//*[@class='button__content']").click();
-        $x("//*[contains(text(), 'Встреча успешно запланирована')]")
+        $("[data-test-id=success-notification]")
                 .shouldHave(Condition.text("Встреча успешно запланирована на " + firstMeetingDate), Duration.ofSeconds(5))
                 .shouldBe(visible);
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
@@ -55,7 +55,7 @@ public class DeliveryTest {
         $x("//*[@class='button__content']").click();
         $("[data-test-id=replan-notification]").shouldBe(Condition.visible);
         $x("//span[contains(text(), 'Перепланировать')]").click();
-        $x("//*[contains(text(), 'Встреча успешно запланирована')]").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(10))
+        $("[data-test-id=success-notification]").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDate), Duration.ofSeconds(10))
                 .shouldBe(visible);
     }
 }
